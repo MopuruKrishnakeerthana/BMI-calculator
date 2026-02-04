@@ -1,2 +1,12 @@
-# BMI-calculator
-This BMI Calculator application calculates the Body Mass Index using user-provided height and weight. Based on the calculated BMI value, it classifies the user into health categories like Underweight, Normal, Overweight, and Obese. The project is built to understand basic logic implementation and user input handling.
+# BMI Pro
+
+A polished Body Mass Index calculator built with HTML, CSS, and JavaScript.
+
+## Highlights
+- Metric + imperial units
+- BMI category insights
+- Healthy weight range
+- Responsive, modern UI
+
+## Run
+Open `index.html` in your browser.

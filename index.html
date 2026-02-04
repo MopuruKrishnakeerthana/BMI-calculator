@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Pro - Body Mass Index Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <main class="shell">
+      <section class="grid">
+        <form id="bmiForm" class="panel" aria-label="BMI calculator">
+          <div class="panel-header">
+            <h2>Calculate BMI</h2>
+            <p>Enter your details below and see your BMI instantly.</p>
+          </div>
+
+          <div class="unit-toggle" role="radiogroup" aria-label="Units">
+            <label class="toggle">
+              <input type="radio" name="units" value="metric" checked />
+              <span>Metric</span>
+            </label>
+            <label class="toggle">
+              <input type="radio" name="units" value="imperial" />
+              <span>Imperial</span>
+            </label>
+          </div>
+
+          <div id="metricFields" class="field-stack">
+            <label class="field">
+              <span>Height (cm)</span>
+              <input type="number" id="heightCm" min="50" max="250" step="0.1" placeholder="170" required />
+            </label>
+            <label class="field">
+              <span>Weight (kg)</span>
+              <input type="number" id="weightKg" min="20" max="250" step="0.1" placeholder="65" required />
+            </label>
+          </div>
+
+          <div id="imperialFields" class="field-stack hidden">
+            <label class="field">
+              <span>Height</span>
+              <div class="field-row">
+                <input type="number" id="heightFt" min="1" max="8" step="1" placeholder="5" />
+                <input type="number" id="heightIn" min="0" max="11" step="0.1" placeholder="7" />
+              </div>
+              <span class="help">Feet and inches</span>
+            </label>
+            <label class="field">
+              <span>Weight (lb)</span>
+              <input type="number" id="weightLb" min="40" max="550" step="0.1" placeholder="150" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="primary">Calculate BMI</button>
+            <button type="button" id="resetBtn" class="ghost">Reset</button>
+          </div>
+        </form>
+
+        <section class="panel result" aria-live="polite">
+          <div class="panel-header">
+            <h2>Your Result</h2>
+            <p>See your BMI, category, and healthy weight range.</p>
+          </div>
+
+          <div class="score">
+            <div>
+              <p class="score-label">BMI Score</p>
+              <p id="bmiValue" class="score-value">--</p>
+              <p id="bmiCategory" class="score-tag">Enter details to calculate</p>
+            </div>
+            <div class="badge" id="badge">No data yet</div>
+          </div>
+
+          <div class="meter">
+            <div class="meter-track">
+              <div id="meterIndicator" class="meter-indicator"></div>
+            </div>
+            <div class="meter-labels">
+              <span>Underweight</span>
+              <span>Normal</span>
+              <span>Overweight</span>
+              <span>Obese</span>
+            </div>
+          </div>
+
+          <div class="insights">
+            <div class="insight">
+              <p class="insight-label">Healthy Weight Range</p>
+              <p id="weightRange" class="insight-value">--</p>
+            </div>
+            <div class="insight">
+              <p class="insight-label">Goal Suggestion</p>
+              <p id="goalHint" class="insight-value">--</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="footer">
+        <p>Built with HTML, CSS, and JavaScript. Designed for a resume showcase.</p>
+      </footer>
+    </main>
+  </body>
+</html>
