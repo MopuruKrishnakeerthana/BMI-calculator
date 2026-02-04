@@ -79,7 +79,11 @@ function calculateBMI(mode) {
 }
 
 function getCategory(bmi) {
-  return ranges.find((range) => (range.min ? bmi >= range.min : bmi <= range.max));
+  return ranges.find((range) => {
+    const min = range.min ?? -Infinity;
+    const max = range.max ?? Infinity;
+    return bmi >= min && bmi <= max;
+  });
 }
 
 function getHealthyRange(mode) {
@@ -108,16 +112,17 @@ function getHealthyRange(mode) {
 }
 
 function updateResult(bmi, mode) {
-  const rounded = bmi.toFixed(1);
-  const category = getCategory(bmi);
+  const rounded = Number(bmi.toFixed(1));
+  const categoryValue = Math.floor(bmi * 10) / 10;
+  const category = getCategory(categoryValue);
 
-  bmiValue.textContent = rounded;
+  bmiValue.textContent = rounded.toFixed(1);
   bmiCategory.textContent = category.label;
   badge.textContent = category.label;
   badge.style.background = category.color;
   badge.style.color = "#1c1b1f";
 
-  const normalized = clamp((bmi - 14) / (40 - 14), 0, 1);
+  const normalized = clamp((categoryValue - 14) / (40 - 14), 0, 1);
   meterIndicator.style.left = `${normalized * 100}%`;
 
   const range = getHealthyRange(mode);
@@ -125,7 +130,7 @@ function updateResult(bmi, mode) {
     weightRange.textContent = `${range.min.toFixed(1)} - ${range.max.toFixed(1)} ${range.unit}`;
   }
 
-  const gap = bmi < 18.5 ? "gain" : bmi >= 25 ? "reduce" : "maintain";
+  const gap = categoryValue < 18.5 ? "gain" : categoryValue >= 25 ? "reduce" : "maintain";
   const suggestion =
     gap === "maintain"
       ? "Maintain your current routine for steady health."
